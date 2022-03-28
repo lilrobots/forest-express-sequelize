@@ -1,0 +1,68 @@
+{
+  "name": "forest-express-sequelize",
+  "description": "Official Express/Sequelize Liana for Forest",
+  "version": "3.1.2",
+  "author": "Sandro Munda <sandro@munda.me>",
+  "contributors": [
+    "Arnaud Besnier <arnaudibesnier@gmail.com>",
+    "Lucas Scariot <scluckas@gmail.com>",
+    "Arnaud Valensi <arnaud.valensi@gmail.com>"
+  ],
+  "license": "GPL-3.0",
+  "homepage": "http://www.forestadmin.com",
+  "keywords": [
+    "forest",
+    "admin",
+    "panel",
+    "interface",
+    "sequelize"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ForestAdmin/forest-express-sequelize.git"
+  },
+  "main": "dist/index.js",
+  "dependencies": {
+    "babel-runtime": "7.0.0-beta.3",
+    "bluebird": "2.9.25",
+    "forest-express": "3.1.1",
+    "http-errors": "1.6.1",
+    "lodash": "4.17.11",
+    "moment": "2.19.4",
+    "moment-timezone": "0.5.14",
+    "semver": "5.4.1"
+  },
+  "devDependencies": {
+    "babel-cli": "7.0.0-beta.3",
+    "babel-plugin-transform-runtime": "7.0.0-beta.3",
+    "babel-preset-env": "7.0.0-beta.3",
+    "babel-register": "7.0.0-beta.3",
+    "chai": "2.3.0",
+    "eslint": "5.16.0",
+    "eslint-config-airbnb": "16.1.0",
+    "eslint-plugin-import": "2.8.0",
+    "eslint-plugin-jsx-a11y": "6.0.2",
+    "eslint-plugin-react": "7.5.1",
+    "mocha": "6.1.4",
+    "mysql2": "1.6.5",
+    "onchange": "5.2.0",
+    "pg": "7.10.0",
+    "pre-commit": "1.2.2",
+    "sequelize": "5.8.6",
+    "sequelize-fixtures": "0.10.0",
+    "simple-git": "1.65.0"
+  },
+  "scripts": {
+    "prepare": "npm run build",
+    "build": "./node_modules/babel-cli/bin/babel.js src --out-dir dist && echo '\n\\033[0;34m[+] \\033[0;32mBuild done\\033[0m'",
+    "build:watch": "onchange 'src/**/*.js' -i -- yarn build",
+    "deploy": "yarn build && node ./bin/deploy.js",
+    "test": "./node_modules/mocha/bin/mocha test/** --require babel-register --exit",
+    "lint": "./node_modules/eslint/bin/eslint.js src",
+    "lint:ci": "node ./.eslint-bin/lint-registered-files.js",
+    "pre-commit": "node ./.eslint-bin/pre-commit-hook.js"
+  },
+  "pre-commit": [
+    "pre-commit"
+  ]
+}
